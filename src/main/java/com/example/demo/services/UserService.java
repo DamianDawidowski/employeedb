@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.example.demo.entities.RoleEnum;
 import com.example.demo.entities.User;
 import com.example.demo.repositories.UserRepository;
 
@@ -29,4 +30,17 @@ public class UserService {
         return users;
     }
 
+    public User upgradeToSenior(String fullName) {
+        User user = userRepository.findByFullName(fullName);
+        user.addRole(RoleEnum.SENIOR);
+        userRepository.save(user);
+        return user;
+    }
+
+    public User upgradeToManager(String fullName) {
+        User user = userRepository.findByFullName(fullName);
+        user.addRole(RoleEnum.MANAGER);
+        userRepository.save(user);
+        return user;
+    }
 }

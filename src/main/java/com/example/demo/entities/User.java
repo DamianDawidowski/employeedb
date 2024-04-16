@@ -30,7 +30,8 @@ public class User implements UserDetails{
     private String password;
 
     @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
+    // @Enumerated(EnumType.STRING)
+    @CollectionTable(name="listOfRoles")
     private ArrayList<RoleEnum> roles;
 
     @CreationTimestamp
@@ -136,6 +137,10 @@ public class User implements UserDetails{
 
     public void setRoles(ArrayList<RoleEnum> roles) {
         this.roles = roles;
+    }
+
+    public void addRole(RoleEnum role) {
+        this.roles.add(role);
     }
  
 

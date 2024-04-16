@@ -8,9 +8,7 @@ public class BasicUser {
  
     private String email;
 
-    private ArrayList<RoleEnum> roles;
-
-
+    private ArrayList<RoleEnum> roles; 
 
     public String getFullName() {
         return this.fullName;

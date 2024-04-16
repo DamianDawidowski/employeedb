@@ -13,8 +13,7 @@ import com.example.demo.dtos.RegisterUserDto;
 import com.example.demo.entities.RoleEnum;
 import com.example.demo.entities.User;
 import com.example.demo.repositories.UserRepository;
-
-import java.util.ArrayList;
+ 
 
 @Service
 public class AuthenticationService {
@@ -41,7 +40,7 @@ public class AuthenticationService {
         user.setPassword(passwordEncoder.encode(input.getPassword()));
         ArrayList<RoleEnum> rolesList = new ArrayList<>(); 
         rolesList.add(RoleEnum.USER);
-        rolesList.add(RoleEnum.MANAGER);
+        // rolesList.add(RoleEnum.MANAGER);
         user.setRoles(rolesList);
 
         return userRepository.save(user);

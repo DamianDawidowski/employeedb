@@ -4,8 +4,10 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -26,6 +28,10 @@ public class User implements UserDetails{
 
     @Column(nullable = false)
     private String password;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private ArrayList<RoleEnum> roles;
 
     @CreationTimestamp
     @Column(updatable = false, name = "created_at")
@@ -53,7 +59,15 @@ public class User implements UserDetails{
 
      @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        List<SimpleGrantedAuthority> rolesList = new ArrayList<>();
+         
+        roles.forEach(role ->{
+            SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + role);
+            rolesList.add(authority);
+        });
+        
+
+        return rolesList;
     }
 
     @Override
@@ -114,6 +128,18 @@ public class User implements UserDetails{
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
+
+
+    public ArrayList<RoleEnum> getRoles() {
+        return this.roles;
+    }
+
+    public void setRoles(ArrayList<RoleEnum> roles) {
+        this.roles = roles;
+    }
+ 
+
+   
 
 
 }

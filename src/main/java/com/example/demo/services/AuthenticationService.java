@@ -1,5 +1,8 @@
 package com.example.demo.services;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -7,8 +10,11 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dtos.LoginUserDto;
 import com.example.demo.dtos.RegisterUserDto;
+import com.example.demo.entities.RoleEnum;
 import com.example.demo.entities.User;
 import com.example.demo.repositories.UserRepository;
+
+import java.util.ArrayList;
 
 @Service
 public class AuthenticationService {
@@ -33,6 +39,10 @@ public class AuthenticationService {
         user.setFullName(input.getFullName());
         user.setEmail(input.getEmail());
         user.setPassword(passwordEncoder.encode(input.getPassword()));
+        ArrayList<RoleEnum> rolesList = new ArrayList<>(); 
+        rolesList.add(RoleEnum.USER);
+        rolesList.add(RoleEnum.MANAGER);
+        user.setRoles(rolesList);
 
         return userRepository.save(user);
     }

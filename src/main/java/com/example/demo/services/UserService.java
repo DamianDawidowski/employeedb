@@ -16,11 +16,17 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public List<User> allUser() {
+    public User findUser(String fullName) {
+        User user = userRepository.findByFullName(fullName);
+        return user;
+    }
+
+    public List<User> allUsers() {
         List<User> users = new ArrayList<>();
 
         userRepository.findAll().forEach(users::add);
 
         return users;
     }
+
 }

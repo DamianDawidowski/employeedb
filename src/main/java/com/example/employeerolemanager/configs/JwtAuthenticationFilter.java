@@ -1,4 +1,4 @@
-package com.example.demo.configs;
+package com.example.employeerolemanager.configs;
 
 import java.io.IOException;
 
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 
-import com.example.demo.services.JwtService;
+import com.example.employeerolemanager.services.JwtService;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

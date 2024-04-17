@@ -1,4 +1,4 @@
-package com.example.demo.entities;
+package com.example.employeerolemanager.entities;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;

@@ -1,4 +1,4 @@
-package com.example.demo.services;
+package com.example.employeerolemanager.services;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,11 +8,11 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.dtos.LoginUserDto;
-import com.example.demo.dtos.RegisterUserDto;
-import com.example.demo.entities.RoleEnum;
-import com.example.demo.entities.User;
-import com.example.demo.repositories.UserRepository;
+import com.example.employeerolemanager.dtos.LoginUserDto;
+import com.example.employeerolemanager.dtos.RegisterUserDto;
+import com.example.employeerolemanager.entities.RoleEnum;
+import com.example.employeerolemanager.entities.User;
+import com.example.employeerolemanager.repositories.UserRepository;
  
 
 @Service

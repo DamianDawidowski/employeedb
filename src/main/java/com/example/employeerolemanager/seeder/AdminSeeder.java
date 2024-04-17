@@ -1,4 +1,4 @@
-package com.example.demo.seeder;
+package com.example.employeerolemanager.seeder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,10 +9,10 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import com.example.demo.dtos.RegisterUserDto;
-import com.example.demo.entities.RoleEnum;
-import com.example.demo.entities.User;
-import com.example.demo.repositories.UserRepository;
+import com.example.employeerolemanager.dtos.RegisterUserDto;
+import com.example.employeerolemanager.entities.RoleEnum;
+import com.example.employeerolemanager.entities.User;
+import com.example.employeerolemanager.repositories.UserRepository;
 
 @Component
 public class AdminSeeder implements ApplicationListener<ContextRefreshedEvent> { 

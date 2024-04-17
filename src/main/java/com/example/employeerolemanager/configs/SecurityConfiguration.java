@@ -1,4 +1,4 @@
-package com.example.demo.configs;
+package com.example.employeerolemanager.configs;
 
 import java.util.List;
 

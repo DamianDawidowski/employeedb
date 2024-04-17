@@ -1,4 +1,4 @@
-package com.example.demo.controllers;
+package com.example.employeerolemanager.controllers;
 
 import java.util.List;
 
@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import com.example.demo.entities.BasicUser;
-import com.example.demo.entities.RoleEnum;
-import com.example.demo.entities.User;
-import com.example.demo.services.UserService;
+import com.example.employeerolemanager.entities.BasicUser;
+import com.example.employeerolemanager.entities.RoleEnum;
+import com.example.employeerolemanager.entities.User;
+import com.example.employeerolemanager.services.UserService;
 
 import jakarta.validation.Valid;
 

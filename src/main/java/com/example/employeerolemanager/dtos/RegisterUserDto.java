@@ -1,4 +1,4 @@
-package com.example.demo.dtos;
+package com.example.employeerolemanager.dtos;
 
 public class RegisterUserDto {
     private String email;

@@ -1,4 +1,4 @@
-package com.example.demo.exceptions;
+package com.example.employeerolemanager.exceptions;
 
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ProblemDetail;

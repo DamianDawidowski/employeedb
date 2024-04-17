@@ -1,4 +1,4 @@
-package com.example.demo.instances;
+package com.example.employeerolemanager.instances;
 
 public class LoginResponse {
     private String token;

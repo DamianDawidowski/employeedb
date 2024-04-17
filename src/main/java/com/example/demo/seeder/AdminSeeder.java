@@ -47,7 +47,7 @@ public class AdminSeeder implements ApplicationListener<ContextRefreshedEvent> {
         userDto.setEmail("admin@email.com");
         userDto.setPassword("123321");
 
-         Optional<User> optionalUser = userRepository.findByEmail(userDto.getEmail());
+        Optional<User> optionalUser = userRepository.findByEmail(userDto.getEmail());
   
         if (optionalUser.isPresent()) {
             return;

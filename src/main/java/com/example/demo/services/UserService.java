@@ -32,6 +32,9 @@ public class UserService {
 
     public User upgradeToSenior(String fullName) {
         User user = userRepository.findByFullName(fullName);
+        if(user.getRoles().contains(RoleEnum.SENIOR)){
+            return user;
+        }
         user.addRole(RoleEnum.SENIOR);
         userRepository.save(user);
         return user;
@@ -39,6 +42,9 @@ public class UserService {
 
     public User upgradeToManager(String fullName) {
         User user = userRepository.findByFullName(fullName);
+        if(user.getRoles().contains(RoleEnum.MANAGER)){
+            return user;
+        }
         user.addRole(RoleEnum.MANAGER);
         userRepository.save(user);
         return user;

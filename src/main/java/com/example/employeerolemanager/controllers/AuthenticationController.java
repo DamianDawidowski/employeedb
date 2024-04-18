@@ -46,7 +46,7 @@ public class AuthenticationController {
         loginResponse.setToken(jwtToken); 
         loginResponse.setExpiresIn(jwtService.getExpirationTime());
 
-        LOGGER.info("A user loggin in using email {}", loginUserDto.getEmail());
+        LOGGER.info("A user logged in using email {}", loginUserDto.getEmail());
         return ResponseEntity.ok(loginResponse);
     }
 }

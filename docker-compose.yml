@@ -1,11 +1,124 @@
-version: "1.0"
+# version: "1.0"
+
+# services:
+#   employeerole-service: 
+#     build: employeedb/
+#     ports:
+#       - "8008"
+ 
+
+#   jaeger-service:
+#     image: jaegertracing/all-in-one:latest
+#     ports:
+#       - "16686:16686"
+#       - "14250"
+
+#   collector:
+#     image: otel/opentelemetry-collector:0.72.0
+#     command: [ "--config=/etc/otel-collector-config.yml" ]
+#     volumes:
+#       - ./otel-config.yml:/etc/otel-collector-config.yml
+#     ports:
+#       - "4317:4317"
+#     depends_on:
+#       - jaeger-service
+#################
+
+# version: "2"
+
+# volumes: 
+#   employeerole_service: 
+#     name: volume_name 
+
+# services:
+#   employeedb:
+#     image: postgres
+#     restart: unless-stopped
+#     container_name: employeedb
+#     environment:
+#     - POSTGRES_DB=employeedb
+#     - POSTGRES_HOST_AUTH_METHOD = trust
+#     - POSTGRES_PASSWORD=secret
+#     - POSTGRES_USER=root 
+#     # env_file: ./.env  
+#     ports:
+#       -  5434:5432
+#     volumes:
+#       -  employeerole_service:/var/lib/postgresql/data
+#   backend:
+#     build:
+#       context: ../employeedb    
+#     # env_file: ./.env     
+#     ports:
+#       -  $SPRING_LOCAL_PORT:8008
+#     environment:
+#      SPRING_APPLICATION_JSON: '{ 
+#         "spring.datasource.url"  : "jdbc:postgresql://host.docker.internal:5434/employeedb",
+#         "spring.datasource.username" : "root",
+#         "spring.datasource.password" : "secret",
+#         "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.PostgreSQLDialect",
+#         "spring.jpa.hibernate.ddl-auto" : "create"
+#       }'  
+#     depends_on:
+#       - employeedb
+
+
+
+version: "3"
+
+volumes: 
+  employeerole_service: 
+    name: volume_name 
 
 services:
-  employeerole-service: 
-    build: employeedb/
+  employeedb:
+    image: postgres
+    restart: unless-stopped
+    container_name: employeedb
+    environment:
+    - POSTGRES_DB=employeedb
+    - POSTGRES_HOST_AUTH_METHOD = trust
+    - POSTGRES_PASSWORD=backend
+    - POSTGRES_USER=backend 
+    # env_file: ./.env  
     ports:
-      - "8008"
- 
+      - 5434:5432
+    volumes:
+      -  employeerole_service:/var/lib/postgresql/data
+  backend:
+    build:
+      context: ../employeedb     
+      dockerfile: Dockerfile 
+    # env_file: ./.env     
+    ports:
+      - 8008:8008
+    environment:
+     SPRING_APPLICATION_JSON: '{ 
+        "spring.datasource.url"  : "jdbc:postgresql://host.docker.internal:5434/postgres",
+        "spring.datasource.username" : "backend",
+        "spring.datasource.password" : "backend",
+        "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.PostgreSQLDialect",
+        "spring.jpa.hibernate.ddl-auto" : "create"
+        
+  
+         }'  
+    depends_on:
+      - employeedb 
+
+        # - OTEL_SERVICE_NAME=backend,
+        # - OTEL_METRICS_EXPORTER=none,
+        # - OTEL_TRACES_EXPORTER=jaeger,
+        # - OTEL_EXPORTER_JAEGER_ENDPOINT=http://jaeger:14250
+
+  # collector:
+  #   image: otel/opentelemetry-collector:0.72.0
+  #   command: [ "--config=/etc/otel-collector-config.yml" ]
+  #   volumes:
+  #     - ./otel-config.yml:/etc/otel-collector-config.yml
+  #   ports:
+  #     - "4317:4317"
+  #   depends_on:
+  #     - jaeger-service
 
   jaeger-service:
     image: jaegertracing/all-in-one:latest
@@ -13,12 +126,39 @@ services:
       - "16686:16686"
       - "14250"
 
-  collector:
-    image: otel/opentelemetry-collector:0.72.0
-    command: [ "--config=/etc/otel-collector-config.yml" ]
-    volumes:
-      - ./otel-config.yml:/etc/otel-collector-config.yml
-    ports:
-      - "4317:4317"
-    depends_on:
-      - jaeger-service
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#####
+# version: "4.0"
+
+# services:
+
+#   collector:
+#     image: otel/opentelemetry-collector:0.72.0
+#     command: [ "--config=/etc/otel-collector-config.yml" ]
+#     volumes:
+#       - ./otel-config.yml:/etc/otel-collector-config.yml
+#     ports:
+#       - "4317:4317"
+#     depends_on:
+#       - jaeger-service
+
+#   jaeger-service:
+#     image: jaegertracing/all-in-one:latest
+#     ports:
+#       - "16686:16686"
+#       - "14250"

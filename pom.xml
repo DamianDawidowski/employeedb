@@ -114,6 +114,12 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+                <agent>
+                    <!-- Path to the additional JAR file -->
+                    <path>target/opentelemetry-javaagent.jar</path>
+                </agent>
+            </configuration>
 			</plugin>
 		</plugins>
 	</build>

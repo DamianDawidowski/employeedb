@@ -24,15 +24,14 @@ services:
       dockerfile: Dockerfile  
     ports:
       - 8008:8008
-    environment:
+    environment:     
+     
      SPRING_APPLICATION_JSON: '{ 
         "spring.datasource.url"  : "jdbc:postgresql://host.docker.internal:5434/postgres",
         "spring.datasource.username" : "backend",
         "spring.datasource.password" : "backend",
         "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.PostgreSQLDialect",
-        "spring.jpa.hibernate.ddl-auto" : "create"
-        
-  
+        "spring.jpa.hibernate.ddl-auto" : "create" 
          }'  
     depends_on:
       - employeedb 

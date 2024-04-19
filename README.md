@@ -44,6 +44,7 @@ docker run -d -e POSTGRES_HOST_AUTH_METHOD=trust -e POSTGRES_USER=root -e POSTGR
 ``` 
 cd employeedb
 mvn spring-boot:run
+``` 
 
 Alternatively you can utilise the docker-compose file with the command:
 ```

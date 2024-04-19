@@ -58,15 +58,7 @@ public class UserControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.put("/users/makeSenior/{fullName}", fullName)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk());
-
-        // Verify that the method was called with the correct arguments
-        // Add additional verification if needed
+ 
     }
-
-
-
-
-
-
-
+  
 }

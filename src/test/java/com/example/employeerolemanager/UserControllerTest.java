@@ -60,5 +60,20 @@ public class UserControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk());
  
     }
+    @Test
+    @WithMockUser(username = "simplejoe", roles = {"USER"})
+    public void testUpgradeToManager() throws Exception {
+        String fullName = "DamianDDD";
+        
+        RegisterUserDto userDto = new RegisterUserDto();
+        userDto.setEmail("test3@example.com");
+        userDto.setPassword("sdsder3");
+        userDto.setFullName(fullName);
+
+        mockMvc.perform(MockMvcRequestBuilders.put("/users/makeManager/{fullName}", fullName)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isForbidden());
+ 
+    }
   
 }

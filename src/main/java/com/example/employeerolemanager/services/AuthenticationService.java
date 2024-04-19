@@ -1,7 +1,6 @@
 package com.example.employeerolemanager.services;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.ArrayList; 
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -39,8 +38,7 @@ public class AuthenticationService {
         user.setEmail(input.getEmail());
         user.setPassword(passwordEncoder.encode(input.getPassword()));
         ArrayList<RoleEnum> rolesList = new ArrayList<>(); 
-        rolesList.add(RoleEnum.USER);
-        // rolesList.add(RoleEnum.MANAGER);
+        rolesList.add(RoleEnum.USER); 
         user.setRoles(rolesList);
 
         return userRepository.save(user);

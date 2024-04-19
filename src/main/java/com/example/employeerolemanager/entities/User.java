@@ -29,8 +29,7 @@ public class User implements UserDetails{
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
-    // @Enumerated(EnumType.STRING)
+    @Column(nullable = false) 
     @CollectionTable(name="listOfRoles")
     private ArrayList<RoleEnum> roles;
 

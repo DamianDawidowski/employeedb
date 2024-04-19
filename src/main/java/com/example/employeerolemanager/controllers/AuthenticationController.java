@@ -2,6 +2,7 @@ package com.example.employeerolemanager.controllers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,6 +25,8 @@ public class AuthenticationController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AuthenticationController.class);
 
+    ProblemDetail errorDetail = null;
+
     public AuthenticationController(JwtService jwtService, AuthenticationService authenticationService) {
         this.jwtService = jwtService;
         this.authenticationService = authenticationService;
@@ -31,22 +34,26 @@ public class AuthenticationController {
 
     @PostMapping("/signup")
     public ResponseEntity<User> register(@RequestBody RegisterUserDto registerUserDto) {
+        LOGGER.info("New signed up attempts using email: {}", registerUserDto.getEmail()); 
+
         User registeredUser = authenticationService.signup(registerUserDto);
-        LOGGER.info("New user signed up using email {}", registerUserDto.getEmail());
+        LOGGER.info("New user signed up using email: {}", registerUserDto.getEmail()); 
+      
         return ResponseEntity.ok(registeredUser);
     }
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> authenticate(@RequestBody LoginUserDto loginUserDto) {
+        LOGGER.info("New login attempts using email: {}", loginUserDto.getEmail()); 
+        
         User authenticatedUser = authenticationService.authenticate(loginUserDto);
 
+        LOGGER.info("A user logged in using email: {}", loginUserDto.getEmail()); 
+
         String jwtToken = jwtService.generateToken(authenticatedUser);
-
         LoginResponse loginResponse = new LoginResponse();
-        loginResponse.setToken(jwtToken); 
-        loginResponse.setExpiresIn(jwtService.getExpirationTime());
-
-        LOGGER.info("A user logged in using email {}", loginUserDto.getEmail());
+            loginResponse.setToken(jwtToken); 
+            loginResponse.setExpiresIn(jwtService.getExpirationTime());
         return ResponseEntity.ok(loginResponse);
     }
 }
